@@ -4,7 +4,16 @@ import React, { useState, useEffect } from "react";
 
 async function fetchMovies(ageRating, genre) {
     try {
-        let url = ``;
+        let url = `https://api.themoviedb.org/3/discover/movie`;
+
+        const params = new URLSearchParams();
+        if (ageRating) {
+            params.append("certification", ageRating);
+        }
+        if (genre) {
+            params.append("with_genres", genre);
+        }
+        url += `&${params.toString()}`;
 
         const response = await fetch(url);
         const data = await response.json();
