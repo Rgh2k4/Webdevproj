@@ -2,5 +2,8 @@
   "dependencies": {
     "encoding": "^0.1.13",
     "firebase": "^11.0.2"
+  },
+  "scripts": {
+    "build": "next build"
   }
 }

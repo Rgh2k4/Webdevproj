@@ -1,5 +1,4 @@
 'use client';
-import Movies from './movies';
 import React, { useState, useEffect } from "react";
 
 const Item = ({ name, rating, genre, onSelect }) => (
@@ -22,7 +21,7 @@ const MovieList = ({ movies }) => {
   const [filteredMovies, setFilteredMovies] = useState(movies);
 
   useEffect(() => {
-    let filtered = movies;
+    let filtered = movies || [];
 
     if (filterRating) {
       filtered = filtered.filter((movie) => movie.rating === filterRating);
@@ -44,10 +43,10 @@ const MovieList = ({ movies }) => {
           filtered.sort((a, b) => b.name.localeCompare(a.name));
           break;
         case "low-high":
-          filtered.sort((a, b) => a.rating - b.rating);
+          filtered.sort((a, b) => a.vote_average - b.vote_average);
           break;
         case "high-low":
-          filtered.sort((a, b) => b.rating - a.rating);
+          filtered.sort((a, b) => b.vote_average - a.vote_average);
           break;
         default:
           break;
