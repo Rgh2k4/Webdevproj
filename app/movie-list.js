@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 const Item = ({ name, rating, genre, onSelect }) => (
   <li className="p-2 border-b border-gray-300">
     <div>
-      <h3>{original_title}</h3>
+      <h3>{title}</h3>
       <p>Rating: {certification}</p>
       <p>Genre: {genre}</p>
     </div>
@@ -82,7 +82,7 @@ const MovieList = ({ movies }) => {
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
         <div className="bg-white p-4 rounded-lg">
-          <h2>{movie.name}</h2>
+          <h2>{title}</h2>
           <p>Synopsis: {details.overview}</p>
           <p>Runtime: {details.runtime}</p>
           <p>Release Date: {details.release_date}</p>

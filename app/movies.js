@@ -29,7 +29,7 @@ const Movie = ({ title, vote_average }) => {
   return (
     <li>
       <div className="flex flex-col gap-4">
-        <h3>{original_title}</h3>
+        <h3>{title}</h3>
         <p>Rating: {vote_average}</p>
       </div>
     </li>
