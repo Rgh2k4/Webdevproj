@@ -1,7 +1,10 @@
 {
   "dependencies": {
+    "autoprefixer": "^10.4.20",
     "encoding": "^0.1.13",
-    "firebase": "^11.0.2"
+    "firebase": "^11.0.2",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.15"
   },
   "scripts": {
     "build": "next build"
