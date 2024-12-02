@@ -38,20 +38,22 @@ const Movie = ({ title, vote_average }) => {
 
 const MovieFetcher = ({ ageRating, genre, onMoviesFetched }) => {
     const [movies, setMovies] = useState([]);
-
+  
     const loadMovies = async () => {
-        const fetchedMovies = await fetchMovies(ageRating, genre);
-        setMovies(fetchedMovies);
-        if (onMoviesFetched) {
-            fetchedMovies(fetchedMovies);
-        }
+      const fetchedMovies = await fetchMovies(ageRating, genre);
+      setMovies(fetchedMovies);
+      if (onMoviesFetched) {
+        onMoviesFetched(fetchedMovies);
+      }
     };
-
+  
     useEffect(() => {
-        loadMovies();
+      loadMovies();
     }, [ageRating, genre]);
-
+  
     return null;
-};
+  };
+  
+  
 
 export default MovieFetcher;

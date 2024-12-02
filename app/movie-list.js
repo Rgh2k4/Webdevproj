@@ -8,7 +8,7 @@ const Item = ({ name, rating, genre, onSelect }) => (
       <p>Rating: {rating}</p>
       <p>Genre: {genre}</p>
     </div>
-    <button onClick={() => onSelect} className="text-blue-500 underline">
+    <button onClick={() => onSelect(movie)} className="text-blue-500 underline">
       Select
     </button>
   </li>
@@ -25,9 +25,7 @@ const MovieList = ({ movies }) => {
   const fetchMovieDetails = async (movieId) => {
     const apiKey = "bb7493d4f35245a98a4e2f6e93813e12";
     try {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`
-      );
+      const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`);
       const data = await response.json();
       setSelectedMovieDetails(data);
     } catch (error) {
@@ -97,58 +95,13 @@ const MovieList = ({ movies }) => {
           </button>
         </div>
       </div>
-    )
+    );
   };
-
-  
 
   return (
     <div className="flex flex-col gap-4">
       <div className="flex justify-between items-center">
         <div className="flex-grow relative">
-          <select
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
-            className="flex border border-gray-400 p-2 text-black mb-4"
-          >
-            <option value="">Sort By</option>
-            <option value="az">A-Z</option>
-            <option value="za">Z-A</option>
-            <option value="low-high">Low-High</option>
-            <option value="high-low">High-Low</option>
-          </select>
-
-          <select
-            value={filterRating}
-            onChange={(e) => setFilterRating(e.target.value)}
-            className="flex border border-gray-400 p-2 text-black mb-4"
-          >
-            <option value="">Rating</option>
-            <option value="G">G</option>
-            <option value="PG">PG</option>
-            <option value="PG-13">PG-13</option>
-            <option value="R">R</option>
-            <option value="NC-17">NC-17</option>
-          </select>
-
-          <select
-            value={filterGenre}
-            onChange={(e) => setFilterGenre(e.target.value)}
-            className="flex border border-gray-400 p-2 text-black mb-4"
-          >
-            <option value="">Genre</option>
-            <option value="action">Action</option>
-            <option value="comedy">Comedy</option>
-            <option value="drama">Drama</option>
-            <option value="horror">Horror</option>
-            <option value="musical">Musical</option>
-            <option value="romance">Romance</option>
-            <option value="sci-fi">Sci-Fi</option>
-            <option value="western">Western</option>
-            <option value="documentary">Documentary</option>
-            <option value="animation">Animation</option>
-            <option value="sports">Sports</option>
-          </select>
         </div>
       </div>
 
@@ -157,15 +110,16 @@ const MovieList = ({ movies }) => {
           filteredMovies.map((movie) => (
             <Item
               key={movie.id}
-              {...movie}
-              onSelect={() => console.log(`Selected: ${movie.name}`)}
+              movie={movie}
+              onSelect={handleSelectMovie}
             />
           ))
         ) : (
           <p>No movies found matching the selected criteria.</p>
         )}
       </ul>
-      {selectedMovie && movieDetails &&(
+
+      {selectedMovie && selectedMovieDetails && (
         <MovieModal
           movie={selectedMovie}
           details={selectedMovieDetails}

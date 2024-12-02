@@ -11,5 +11,8 @@
   },
   "scripts": {
     "build": "next build"
+  },
+  "devDependencies": {
+    "eslint": "^9.16.0"
   }
 }
