@@ -8,7 +8,7 @@ const Item = ({ name, rating, genre, onSelect }) => (
       <p>Rating: {rating}</p>
       <p>Genre: {genre}</p>
     </div>
-    <button onClick={onSelect} className="text-blue-500 underline">
+    <button onClick={() => onSelect} className="text-blue-500 underline">
       Select
     </button>
   </li>
@@ -19,6 +19,21 @@ const MovieList = ({ movies }) => {
   const [filterRating, setFilterRating] = useState("");
   const [filterGenre, setFilterGenre] = useState("");
   const [filteredMovies, setFilteredMovies] = useState(movies);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [selectedMovieDetails, setSelectedMovieDetails] = useState(null);
+
+  const fetchMovieDetails = async (movieId) => {
+    const apiKey = "bb7493d4f35245a98a4e2f6e93813e12";
+    try {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`
+      );
+      const data = await response.json();
+      setSelectedMovieDetails(data);
+    } catch (error) {
+      console.error("Error fetching movie details:", error);
+    }
+  };
 
   useEffect(() => {
     let filtered = movies || [];
@@ -55,6 +70,37 @@ const MovieList = ({ movies }) => {
 
     setFilteredMovies(filtered);
   }, [movies, sortBy, filterRating, filterGenre]);
+
+  const handleSelectMovie = (movie) => {
+    setSelectedMovie(movie);
+    fetchMovieDetails(movie.id);
+  };
+
+  const MovieModal = ({ movie, details, onClose }) => {
+    if (!details) return null;
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+        <div className="bg-white p-4 rounded-lg">
+          <h2>{movie.name}</h2>
+          <p>Synopsis: {details.overview}</p>
+          <p>Runtime: {details.runtime}</p>
+          <p>Release Date: {details.release_date}</p>
+          <p>Notable Actors:</p>
+          <ul>
+            {details.credits.cast.slice(0, 5).map((actor) => (
+              <li key={actor.id}>{actor.name}</li>
+            ))}
+          </ul>
+          <button onClick={onClose} className="text-blue-500 underline">
+            Close
+          </button>
+        </div>
+      </div>
+    )
+  };
+
+  
 
   return (
     <div className="flex flex-col gap-4">
@@ -119,6 +165,13 @@ const MovieList = ({ movies }) => {
           <p>No movies found matching the selected criteria.</p>
         )}
       </ul>
+      {selectedMovie && movieDetails &&(
+        <MovieModal
+          movie={selectedMovie}
+          details={selectedMovieDetails}
+          onClose={() => setSelectedMovie(null)}
+        />
+      )}
     </div>
   );
 };

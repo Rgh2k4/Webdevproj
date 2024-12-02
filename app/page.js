@@ -4,7 +4,7 @@ import MovieFetcher from "./movies";
 import MovieList from "./movie-list";
 
 export default function Page() {
-    const [movies, setMovies] = useState("");
+    const [movies, setMovies] = useState([]);
 
     const handleFetchedMovies = (fetchedMovies) => {
         setMovies(fetchedMovies);

@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 
-async function fetchMovies(ageRating, genre) {
-    const apiKey = "YOUR_API_KEY";
+async function fetchMovies(ageRating = "", genre = "") {
+    const apiKey = "bb7493d4f35245a98a4e2f6e93813e12";
     try {
         let url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`;
 
@@ -36,13 +36,13 @@ const Movie = ({ title, vote_average }) => {
     );
 };
 
-const MovieFetcher = ({ ageRating, genre, sortFetched }) => {
+const MovieFetcher = ({ ageRating, genre, onMoviesFetched }) => {
     const [movies, setMovies] = useState([]);
 
     const loadMovies = async () => {
         const fetchedMovies = await fetchMovies(ageRating, genre);
         setMovies(fetchedMovies);
-        if (sortFetched) {
+        if (onMoviesFetched) {
             fetchedMovies(fetchedMovies);
         }
     };
@@ -51,7 +51,7 @@ const MovieFetcher = ({ ageRating, genre, sortFetched }) => {
         loadMovies();
     }, [ageRating, genre]);
 
-    return <div />
+    return null;
 };
 
 export default MovieFetcher;
