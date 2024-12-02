@@ -1,18 +1,23 @@
 'use client';
 import React, { useState, useEffect } from "react";
 
-const Item = ({ name, rating, genre, onSelect }) => (
-  <li className="p-2 border-b border-gray-300">
-    <div>
-      <h3>{title}</h3>
-      <p>Rating: {certification}</p>
-      <p>Genre: {genre}</p>
-    </div>
-    <button onClick={() => onSelect()} className="text-blue-500 underline">
-      Select
-    </button>
-  </li>
-);
+const Item = ({ movie, onSelect }) => {
+  const { title, certification, genre } = movie;
+
+  return (
+    <li className="p-2 border-b border-gray-300">
+      <div>
+        <h3>{title}</h3>
+        <p> Age Rating: {certification}</p>
+        <p>Genre: {genre}</p>
+      </div>
+      <button onClick={onSelect} className="text-blue-500 underline">
+        Select
+      </button>
+    </li>
+  );
+};
+
 
 const MovieList = ({ movies }) => {
   const [sortBy, setSortBy] = useState("");
@@ -121,7 +126,7 @@ const MovieList = ({ movies }) => {
             onChange={(e) => setFilterRating(e.target.value)}
             className="flex border border-gray-400 p-2 text-black mb-4"
           >
-            <option value="">Rating</option>
+            <option value="">Age Rating</option>
             <option value="G">G</option>
             <option value="PG">PG</option>
             <option value="PG-13">PG-13</option>
@@ -155,7 +160,7 @@ const MovieList = ({ movies }) => {
           filteredMovies.map((movie) => (
             <Item
               key={movie.id}
-              {...movie}
+              movie={movie}
               onSelect={() => handleSelectMovie(movie)}
             />
           ))
