@@ -2,7 +2,23 @@
 import React, { useState, useEffect } from "react";
 
 const Item = ({ movie, onSelect }) => {
-  const { title, certification, genre, vote_average } = movie;
+  const { title, certification, genre_id, vote_average } = movie;
+
+  const genreMapping = {
+    action: 28,
+    comedy: 35,
+    drama: 18,
+    horror: 27,
+    musical: 10402,
+    romance: 10749,
+    'sci-fi': 878,
+    western: 37,
+    documentary: 99,
+    animation: 16,
+    sports: 16
+  };
+
+  const genres = genre_id.map((id) => genreMapping[id] || 'Unknown').join(', ');
 
   return (
     <li className="p-2 border-b border-gray-300">
@@ -10,7 +26,7 @@ const Item = ({ movie, onSelect }) => {
         <h3>{title}</h3>
         <p>Age Rating: {certification}</p>
         <p>Rating: {vote_average}/10</p>
-        <p>Genre: {genre}</p>
+        <p>Genre: {genres}</p>
       </div>
       <button onClick={() => onSelect()} className="text-blue-500 underline">
         Select
@@ -19,11 +35,8 @@ const Item = ({ movie, onSelect }) => {
   );
 };
 
-
-const MovieList = ({ movies }) => {
+const MovieList = ({ movies, filterRating, filterGenre }) => {
   const [sortBy, setSortBy] = useState("");
-  const [filterRating, setFilterRating] = useState("");
-  const [filterGenre, setFilterGenre] = useState("");
   const [filteredMovies, setFilteredMovies] = useState(movies);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [selectedMovieDetails, setSelectedMovieDetails] = useState(null);
@@ -31,67 +44,52 @@ const MovieList = ({ movies }) => {
   const fetchMovieDetails = async (movieId) => {
     const apiKey = "bb7493d4f35245a98a4e2f6e93813e12";
     try {
-        const response = await fetch(
-            `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&append_to_response=credits`
-        );
-        const data = await response.json();
-        setSelectedMovieDetails(data);
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&append_to_response=credits`
+      );
+      const data = await response.json();
+      setSelectedMovieDetails(data);
     } catch (error) {
-        console.error("Error fetching movie details:", error);
+      console.error("Error fetching movie details:", error);
     }
-};
-
-
-  const genreMapping = {
-    action: 28,
-    'comedy': 35,
-    'drama': 18,
-    'horror': 27,
-    'musical': 10402,
-    'romance': 10749,
-    'sci-fi' : 878,
-    'western': 37,
-    'documentary': 99,
-    'animation': 16,
-    'sports': 16
   };
 
   useEffect(() => {
     let filtered = movies || [];
 
     if (filterRating) {
-        filtered = filtered.filter((movie) => movie.certification === filterRating);
+      filtered = filtered.filter((movie) => movie.certification === filterRating);
     }
 
     if (filterGenre) {
       const genreId = genreMapping[filterGenre];
       filtered = filtered.filter((movie) =>
-          movie.genre_ids.includes(genreId)
-        );
+        movie.genre_ids.includes(genreId)
+      );
     }
 
     if (sortBy) {
-        filtered = [...filtered];
-        switch (sortBy) {
-            case "az":
-                filtered.sort((a, b) => a.title.localeCompare(b.title));
-                break;
-            case "za":
-                filtered.sort((a, b) => b.title.localeCompare(a.title));
-                break;
-            case "low-high":
-                filtered.sort((a, b) => a.vote_average - b.vote_average);
-                break;
-            case "high-low":
-                filtered.sort((a, b) => b.vote_average - a.vote_average);
-                break;
-            default:
-                break;
-        }
+      filtered = [...filtered];
+      switch (sortBy) {
+        case "az":
+          filtered.sort((a, b) => a.title.localeCompare(b.title));
+          break;
+        case "za":
+          filtered.sort((a, b) => b.title.localeCompare(a.title));
+          break;
+        case "low-high":
+          filtered.sort((a, b) => a.vote_average - b.vote_average);
+          break;
+        case "high-low":
+          filtered.sort((a, b) => b.vote_average - a.vote_average);
+          break;
+        default:
+          break;
+      }
     }
 
     setFilteredMovies(filtered);
-}, [movies, sortBy, filterRating, filterGenre]);
+  }, [movies, sortBy, filterRating, filterGenre]);
 
   const handleSelectMovie = (movie) => {
     setSelectedMovie(movie);
@@ -102,30 +100,33 @@ const MovieList = ({ movies }) => {
     if (!details) return null;
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-            <div className="bg-white p-4 rounded-lg text-black">
-                <h2 className=" text ">{movie.title}</h2>
-                <p className="bla">Synopsis: {details.overview}</p>
-                <p>Runtime: {details.runtime} minutes</p>
-                <img className="max-w-[400px], max-h-[500px] justify-end" src={details.poster_path
-                  ? `https://image.tmdb.org/t/p/w500${details.poster_path}`
-                  : 'defaultPoster'} />
-                <p>Release Date: {details.release_date}</p>
-                <p>Notable Actors:</p>
-                <ul>
-                    {details.credits.cast.slice(0, 5).map((actor) => (
-                        <li key={actor.id}>{actor.name}</li>
-                    ))}
-                </ul>
-                <button onClick={onClose} className="text-blue-500 underline">
-                    Close
-                </button>
-            </div>
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+        <div className="bg-white p-4 rounded-lg text-black">
+          <h2 className="text">{movie.title}</h2>
+          <p>Synopsis: {details.overview}</p>
+          <p>Runtime: {details.runtime} minutes</p>
+          <img
+            className="max-w-[400px] max-h-[500px] justify-end"
+            src={details.poster_path
+              ? `https://image.tmdb.org/t/p/w500${details.poster_path}`
+              : 'defaultPoster'}
+            alt="Movie Poster"
+          />
+          <p>Release Date: {details.release_date}</p>
+          <p>Notable Actors:</p>
+          <ul>
+            {details.credits.cast.slice(0, 5).map((actor) => (
+              <li key={actor.id}>{actor.name}</li>
+            ))}
+          </ul>
+          <button onClick={onClose} className="text-blue-500 underline">
+            Close
+          </button>
         </div>
+      </div>
     );
-};
+  };
 
-  
   return (
     <div className="flex flex-col gap-4">
       <div className="flex justify-between items-center">
@@ -140,38 +141,6 @@ const MovieList = ({ movies }) => {
             <option value="za">Z-A</option>
             <option value="low-high">Low-High</option>
             <option value="high-low">High-Low</option>
-          </select>
-
-          <select
-            value={filterRating}
-            onChange={(e) => setFilterRating(e.target.value)}
-            className="flex border border-gray-400 p-2 text-black mb-4"
-          >
-            <option value="">Age Rating</option>
-            <option value="G">G</option>
-            <option value="PG">PG</option>
-            <option value="14A">14A</option>
-            <option value="18A">18A</option>
-            <option value="A">A</option>
-          </select>
-
-          <select
-            value={filterGenre}
-            onChange={(e) => setFilterGenre(e.target.value)}
-            className="flex border border-gray-400 p-2 text-black mb-4"
-          >
-            <option value="">Genre</option>
-            <option value="action">Action</option>
-            <option value="comedy">Comedy</option>
-            <option value="drama">Drama</option>
-            <option value="horror">Horror</option>
-            <option value="musical">Musical</option>
-            <option value="romance">Romance</option>
-            <option value="sci-fi">Sci-Fi</option>
-            <option value="western">Western</option>
-            <option value="documentary">Documentary</option>
-            <option value="animation">Animation</option>
-            <option value="sports">Sports</option>
           </select>
         </div>
       </div>
