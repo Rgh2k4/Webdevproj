@@ -156,7 +156,9 @@ const MovieList = ({ movies }) => {
             <option value="18A">18A</option>
             <option value="A">A</option>
           </select>
+          </div>
 
+          <div className="flex-grow relative">
           <select
             value={filterGenre}
             onChange={(e) => setFilterGenre(e.target.value)}
