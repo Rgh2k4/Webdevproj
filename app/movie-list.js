@@ -139,6 +139,37 @@ const MovieList = ({ movies, filterRating, filterGenre }) => {
             <option value="low-high">Low-High</option>
             <option value="high-low">High-Low</option>
           </select>
+
+          <select
+            value={filterRating}
+            onChange={(e) => setFilterRating(e.target.value)}
+            className="flex border border-gray-400 p-2 text-black mb-4"
+          >
+            <option value="">Age Rating</option>
+            <option value="G">G</option>
+            <option value="PG">PG</option>
+            <option value="14A">14A</option>
+            <option value="18A">18A</option>
+            <option value="A">A</option>
+          </select>
+
+          <select
+            value={filterGenre}
+            onChange={(e) => setFilterGenre(e.target.value)}
+            className="flex border border-gray-400 p-2 text-black mb-4"
+          >
+            <option value="">Genre</option>
+            <option value="action">Action</option>
+            <option value="comedy">Comedy</option>
+            <option value="drama">Drama</option>
+            <option value="horror">Horror</option>
+            <option value="musical">Musical</option>
+            <option value="romance">Romance</option>
+            <option value="sci-fi">Sci-Fi</option>
+            <option value="western">Western</option>
+            <option value="documentary">Documentary</option>
+            <option value="animation">Animation</option>
+          </select>
         </div>
       </div>
 
