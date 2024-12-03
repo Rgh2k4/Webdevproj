@@ -7,7 +7,7 @@ const Item = ({ movie, onSelect }) => {
   return (
     <li className="p-2 border-b border-gray-300">
       <div>
-        <h3 className=" font-bold ">{title}</h3>
+        <h3>{title}</h3>
         <p>Rating: {vote_average}/10</p>
       </div>
       <button onClick={() => onSelect()} className="text-blue-500 underline">
@@ -55,7 +55,9 @@ const MovieList = ({ movies }) => {
     let filtered = movies || [];
 
     if (filterRating) {
-      filtered = filtered.filter((movie) => movie.certification === filterRating);
+      filtered = filtered.filter((movie) => {
+        return movie.certification && movie.certification.includes(filterRating);
+      });
     }
 
     if (filterGenre) {
