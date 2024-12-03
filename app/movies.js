@@ -15,8 +15,9 @@ async function fetchMovies(ageRating = "", genre = "") {
         }
 
         if (genre) {
-            params.append("with_genres", genre);
-        }
+          const genreId = genreMapping[genre];
+          params.append("with_genres", genreId);
+      }
 
         url += `&${params.toString()}`;
 
