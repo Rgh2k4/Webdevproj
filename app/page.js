@@ -16,13 +16,13 @@ export default function Page() {
         <main className="container mx-auto p-4">
             <h1 className="flex font-bold text-xl">Movie Suggestions 4 U</h1>
 
-            <div className="flex gap-4 mb-4" style={{visibility: 'hidden'}}>
+            <div className="flex gap-4 mb-4">
                 <select
                     value={ageRating}
                     onChange={(e) => setAgeRating(e.target.value)}
                     className="flex border border-gray-400 p-2 text-black"
                 >
-                    <option value="">Age Rating</option>
+                    <option value="">Age Rating page</option>
                     <option value="G">G</option>
                     <option value="PG">PG</option>
                     <option value="14A">PG-13</option>
@@ -35,7 +35,7 @@ export default function Page() {
                     onChange={(e) => setGenre(e.target.value)}
                     className="flex border border-gray-400 p-2 text-black"
                 >
-                    <option value="">Genre</option>
+                    <option value="">Genre page</option>
                     <option value="action">Action</option>
                     <option value="comedy">Comedy</option>
                     <option value="drama">Drama</option>
