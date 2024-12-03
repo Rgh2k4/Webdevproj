@@ -2,31 +2,13 @@
 import React, { useState, useEffect } from "react";
 
 const Item = ({ movie, onSelect }) => {
-  const { title, certification, genre_id, vote_average } = movie;
-
-  const genreMapping = {
-    action: 28,
-    comedy: 35,
-    drama: 18,
-    horror: 27,
-    musical: 10402,
-    romance: 10749,
-    'sci-fi': 878,
-    western: 37,
-    documentary: 99,
-    animation: 16,
-    sports: 16
-  };
-
-  const genres = (genre_id || []).map((id) => genreMapping[id] || "Unknown").join(", ");
+  const { title, vote_average } = movie;
 
   return (
     <li className="p-2 border-b border-gray-300">
       <div>
         <h3>{title}</h3>
-        <p>Age Rating: {certification}</p>
         <p>Rating: {vote_average}/10</p>
-        <p>Genre: {genres}</p>
       </div>
       <button onClick={() => onSelect()} className="text-blue-500 underline">
         Select
@@ -52,6 +34,20 @@ const MovieList = ({ movies, filterRating, filterGenre }) => {
     } catch (error) {
       console.error("Error fetching movie details:", error);
     }
+  };
+
+  const genreMapping = {
+    action: 28,
+    comedy: 35,
+    drama: 18,
+    horror: 27,
+    musical: 10402,
+    romance: 10749,
+    'sci-fi': 878,
+    western: 37,
+    documentary: 99,
+    animation: 16,
+    sports: 16
   };
 
   useEffect(() => {
@@ -112,6 +108,9 @@ const MovieList = ({ movies, filterRating, filterGenre }) => {
               : 'defaultPoster'}
             alt="Movie Poster"
           />
+          <p>Rating: {details.vote_average}/10</p>
+          <p>Genre: {details.genres.map((genre) => genre.name).join(", ")}</p>
+          <p>Age Rating: {details.certification}</p>
           <p>Release Date: {details.release_date}</p>
           <p>Notable Actors:</p>
           <ul>
