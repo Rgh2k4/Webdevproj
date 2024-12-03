@@ -25,9 +25,9 @@ export default function Page() {
                     <option value="">Age Rating</option>
                     <option value="G">G</option>
                     <option value="PG">PG</option>
-                    <option value="PG-13">PG-13</option>
-                    <option value="R">R</option>
-                    <option value="NC-17">NC-17</option>
+                    <option value="14A">14A</option>
+                    <option value="18A">18A</option>
+                    <option value="A">A</option>
                 </select>
 
                 <select
@@ -36,17 +36,16 @@ export default function Page() {
                     className="flex border border-gray-400 p-2 text-black"
                 >
                     <option value="">Genre</option>
-                    <option value="action">Action</option>
-                    <option value="comedy">Comedy</option>
-                    <option value="drama">Drama</option>
-                    <option value="horror">Horror</option>
-                    <option value="musical">Musical</option>
-                    <option value="romance">Romance</option>
-                    <option value="sci-fi">Sci-Fi</option>
-                    <option value="western">Western</option>
-                    <option value="documentary">Documentary</option>
-                    <option value="animation">Animation</option>
-                    <option value="sports">Sports</option>
+                    <option value="28">Action</option>
+                    <option value="35">Comedy</option>
+                    <option value="18">Drama</option>
+                    <option value="27">Horror</option>
+                    <option value="10402">Musical</option>
+                    <option value="10749">Romance</option>
+                    <option value="878">Sci-Fi</option>
+                    <option value="37">Western</option>
+                    <option value="99">Documentary</option>
+                    <option value="16">Animation</option>
                 </select>
             </div>
 

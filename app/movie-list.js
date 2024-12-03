@@ -37,17 +37,16 @@ const MovieList = ({ movies, filterRating, filterGenre }) => {
   };
 
   const genreMapping = {
-    action: 28,
-    comedy: 35,
-    drama: 18,
-    horror: 27,
-    musical: 10402,
-    romance: 10749,
+    'action': 28,
+    'comedy': 35,
+    'drama': 18,
+    'horror': 27,
+    'musical': 10402,
+    'romance': 10749,
     'sci-fi': 878,
-    western: 37,
-    documentary: 99,
-    animation: 16,
-    sports: 16
+    'western': 37,
+    'documentary': 99,
+    'animation': 16,
   };
 
   useEffect(() => {
@@ -110,7 +109,6 @@ const MovieList = ({ movies, filterRating, filterGenre }) => {
           />
           <p>Rating: {details.vote_average}/10</p>
           <p>Genre: {details.genres.map((genre) => genre.name).join(", ")}</p>
-          <p>Age Rating: {details.certification}</p>
           <p>Release Date: {details.release_date}</p>
           <p>Notable Actors:</p>
           <ul>
