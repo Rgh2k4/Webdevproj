@@ -53,21 +53,7 @@ const MovieFetcher = ({ ageRating, genre, onMoviesFetched }) => {
       loadMovies();
     }, [ageRating, genre]);
 
-    return (
-      <ul>
-        {movies.length > 0 ? (
-          movies.map((movie) => (
-            <Movie
-              key={movie.id}
-              title={movie.title}
-              vote_average={movie.vote_average}
-            />
-          ))
-        ) : (
-          <p>No movies found matching the selected criteria.</p>
-        )}
-      </ul>
-    );
+    return null;
 };
 
 export default MovieFetcher;

@@ -107,7 +107,7 @@ const MovieList = ({ movies }) => {
                 <h2 className=" text ">{movie.title}</h2>
                 <p className="bla">Synopsis: {details.overview}</p>
                 <p>Runtime: {details.runtime} minutes</p>
-                <img src={details.poster_path
+                <img className="max-w-[400px], max-h-[500px] justify-end" src={details.poster_path
                   ? `https://image.tmdb.org/t/p/w500${details.poster_path}`
                   : 'defaultPoster'} />
                 <p>Release Date: {details.release_date}</p>
