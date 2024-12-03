@@ -1,6 +1,25 @@
 'use client';
 import React, { useState, useEffect } from "react";
 
+const Item = ({ movie, onSelect }) => {
+  const { title, certification, genre, vote_average } = movie;
+
+  return (
+    <li className="p-2 border-b border-gray-300">
+      <div>
+        <h3>{title}</h3>
+        <p>Age Rating: {certification}</p>
+        <p>Rating: {vote_average}/10</p>
+        <p>Genre: {genre}</p>
+      </div>
+      <button onClick={() => onSelect()} className="text-blue-500 underline">
+        Select
+      </button>
+    </li>
+  );
+};
+
+
 const MovieList = ({ movies }) => {
   const [sortBy, setSortBy] = useState("");
   const [filterRating, setFilterRating] = useState("");
@@ -167,9 +186,10 @@ const MovieList = ({ movies }) => {
             />
           ))
         ) : (
-          <p>No movies found matching the selected criteria.</p>
+          <p>No movies found matching selected criteria.</p>
         )}
       </ul>
+
       {selectedMovie && selectedMovieDetails && (
         <MovieModal
           movie={selectedMovie}
