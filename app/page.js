@@ -22,12 +22,12 @@ export default function Page() {
                     onChange={(e) => setAgeRating(e.target.value)}
                     className="flex border border-gray-400 p-2 text-black"
                 >
-                    <option value="">Age</option>
+                    <option value="">Age Rating</option>
                     <option value="G">G</option>
                     <option value="PG">PG</option>
-                    <option value="PG-13">PG-13</option>
-                    <option value="R">R</option>
-                    <option value="NC-17">NC-17</option>
+                    <option value="14A">PG-13</option>
+                    <option value="18A">18A</option>
+                    <option value="A">A</option>
                 </select>
 
                 <select
@@ -35,7 +35,7 @@ export default function Page() {
                     onChange={(e) => setGenre(e.target.value)}
                     className="flex border border-gray-400 p-2 text-black"
                 >
-                    <option value="">Genre ggg</option>
+                    <option value="">Genre</option>
                     <option value="action">Action</option>
                     <option value="comedy">Comedy</option>
                     <option value="drama">Drama</option>
