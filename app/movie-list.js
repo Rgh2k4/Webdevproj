@@ -1,7 +1,6 @@
 'use client';
 import React, { useState, useEffect } from "react";
 
-// Item component to display each movie
 const Item = ({ movie, onSelect }) => {
   const { title, certification, genre, vote_average } = movie;
 
@@ -142,7 +141,9 @@ const MovieList = ({ movies }) => {
             <option value="low-high">Low-High</option>
             <option value="high-low">High-Low</option>
           </select>
+          </div>
 
+          <div className="flex-grow relative" style={{display: 'none'}}>
           <select
             value={filterRating}
             onChange={(e) => setFilterRating(e.target.value)}

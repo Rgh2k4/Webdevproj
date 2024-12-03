@@ -29,7 +29,9 @@ export default function Page() {
                     <option value="18A">18A</option>
                     <option value="A">A</option>
                 </select>
+                </div>
 
+                <div className="flex gap-4 mb-4" style={{display: 'none'}}>
                 <select
                     value={genre}
                     onChange={(e) => setGenre(e.target.value)}
