@@ -1,25 +1,6 @@
 'use client';
 import React, { useState, useEffect } from "react";
 
-const Item = ({ movie, onSelect }) => {
-  const { title, certification, genre } = movie;
-
-  return (
-    <li className="p-2 border-b border-gray-300">
-      <div>
-        <h3>{title}</h3>
-        <p>Age Rating: {certification}</p>
-        <p>Genre: {genre}</p>
-      </div>
-      <button onClick={() => onSelect()} className="text-blue-500 underline">
-        Select
-      </button>
-    </li>
-  );
-};
-
-
-
 const MovieList = ({ movies }) => {
   const [sortBy, setSortBy] = useState("");
   const [filterRating, setFilterRating] = useState("");
@@ -103,10 +84,13 @@ const MovieList = ({ movies }) => {
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-            <div className="bg-white p-4 rounded-lg">
-                <h2>{movie.title}</h2>
-                <p>Synopsis: {details.overview}</p>
+            <div className="bg-white p-4 rounded-lg text-black">
+                <h2 className=" text ">{movie.title}</h2>
+                <p className="bla">Synopsis: {details.overview}</p>
                 <p>Runtime: {details.runtime} minutes</p>
+                <img src={details.poster_path
+                  ? `https://image.tmdb.org/t/p/w500${details.poster_path}`
+                  : 'defaultPoster'} />
                 <p>Release Date: {details.release_date}</p>
                 <p>Notable Actors:</p>
                 <ul>
