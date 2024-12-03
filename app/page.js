@@ -16,7 +16,7 @@ export default function Page() {
         <main className="container mx-auto p-4">
             <h1 className="flex font-bold text-xl">Movie Suggestions 4 U</h1>
 
-            <div className="flex gap-4 mb-4" style={{visibility: 'none'}}>
+            <div className="flex gap-4 mb-4" style={{display: 'none'}}>
                 <select
                     value={ageRating}
                     onChange={(e) => setAgeRating(e.target.value)}
