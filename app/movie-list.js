@@ -18,7 +18,7 @@ const Item = ({ movie, onSelect }) => {
     sports: 16
   };
 
-  const genres = genre_id.map((id) => genreMapping[id] || 'Unknown').join(', ');
+  const genres = (genre_id || []).map((id) => genreMapping[id] || "Unknown").join(", ");
 
   return (
     <li className="p-2 border-b border-gray-300">
