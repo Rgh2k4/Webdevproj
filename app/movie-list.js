@@ -162,7 +162,7 @@ const MovieList = ({ movies }) => {
           <select
             value={filterGenre}
             onChange={(e) => setFilterGenre(e.target.value)}
-            className="flex border border-gray-400 p-2 text-black mb-4"
+            className=" border border-gray-400 p-2 text-black mb-4"
           >
             <option value="">Genre</option>
             <option value="action">Action</option>

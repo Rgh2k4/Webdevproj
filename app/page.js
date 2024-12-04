@@ -20,7 +20,7 @@ export default function Page() {
                 <select
                     value={ageRating}
                     onChange={(e) => setAgeRating(e.target.value)}
-                    className="flex border border-gray-400 p-2 text-black"
+                    className="border border-gray-400 p-2 text-black"
                 >
                     <option value="">Age Rating</option>
                     <option value="G">G</option>
