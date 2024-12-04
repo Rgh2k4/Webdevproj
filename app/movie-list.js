@@ -133,7 +133,7 @@ const MovieList = ({ movies }) => {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="flex border border-gray-400 p-2 text-black mb-4"
+            className="border border-gray-400 p-2 text-black mb-4"
           >
             <option value="">Sort By</option>
             <option value="az">A-Z</option>
@@ -143,7 +143,7 @@ const MovieList = ({ movies }) => {
           </select>
           </div>
 
-          <div className="flex-grow relative" style={{display: 'none'}}>
+          <div style={{display: 'none'}}>
           <select
             value={filterRating}
             onChange={(e) => setFilterRating(e.target.value)}
