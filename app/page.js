@@ -31,7 +31,7 @@ export default function Page() {
                 </select>
                 </div>
 
-                <div className="flex gap-4 mb-4" style={{display: 'none'}}>
+                <div style={{display: 'none'}}>
                 <select
                     value={genre}
                     onChange={(e) => setGenre(e.target.value)}
