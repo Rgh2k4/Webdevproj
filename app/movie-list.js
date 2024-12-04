@@ -8,9 +8,7 @@ const Item = ({ movie, onSelect }) => {
     <li className="p-2 border-b border-gray-300">
       <div>
         <h3>{title}</h3>
-        <p>Age Rating: {certification}</p>
         <p>Rating: {vote_average}/10</p>
-        <p>Genre: {genre}</p>
       </div>
       <button onClick={() => onSelect()} className="text-blue-500 underline">
         Select
@@ -130,7 +128,7 @@ const MovieList = ({ movies }) => {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-center gap-5 mb-4">
         <div className="flex-grow relative">
           <select
             value={sortBy}
