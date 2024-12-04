@@ -45,7 +45,7 @@ const MovieList = ({ movies }) => {
     horror: 27,
     musical: 10402,
     romance: 10749,
-    "sci-fi": 878,
+    'sci-fi': 878,
     western: 37,
     documentary: 99,
     animation: 16,
@@ -128,7 +128,7 @@ const MovieList = ({ movies }) => {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex justify-center gap-5 mb-4">
+      <div className="flex items-center justify-center gap-5 mb-4">
         <div className="flex-grow relative">
           <select
             value={sortBy}
