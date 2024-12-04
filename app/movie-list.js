@@ -128,8 +128,8 @@ const MovieList = ({ movies }) => {
 
   return (
     <div className="flex flex-col gap-4">
-      <div>
-        <div className="flex justify-center gap-5 mb-4">
+      <div className="justify-center gap-5 mb-4">
+        <div className="flex-grow relative">
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
@@ -143,7 +143,7 @@ const MovieList = ({ movies }) => {
           </select>
           </div>
 
-          <div className="flex justify-center gap-5 mb-4">
+          <div className="flex-grow relative">
           <select
             value={filterGenre}
             onChange={(e) => setFilterGenre(e.target.value)}
