@@ -143,21 +143,6 @@ const MovieList = ({ movies }) => {
           </select>
           </div>
 
-          <div style={{display: 'none'}}>
-          <select
-            value={filterRating}
-            onChange={(e) => setFilterRating(e.target.value)}
-            className="flex border border-gray-400 p-2 text-black mb-4"
-          >
-            <option value="">Age Rating</option>
-            <option value="G">G</option>
-            <option value="PG">PG</option>
-            <option value="14A">14A</option>
-            <option value="18A">18A</option>
-            <option value="A">A</option>
-          </select>
-          </div>
-
           <div className="flex justify-center gap-5 mb-4">
           <select
             value={filterGenre}

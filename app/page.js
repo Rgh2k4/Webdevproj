@@ -31,26 +31,6 @@ export default function Page() {
                 </select>
                 </div>
 
-                <div style={{display: 'none'}}>
-                <select
-                    value={genre}
-                    onChange={(e) => setGenre(e.target.value)}
-                    className="flex border border-gray-400 p-2 text-black"
-                >
-                    <option value="">Genre page</option>
-                    <option value="action">Action</option>
-                    <option value="comedy">Comedy</option>
-                    <option value="drama">Drama</option>
-                    <option value="horror">Horror</option>
-                    <option value="musical">Musical</option>
-                    <option value="romance">Romance</option>
-                    <option value="sci-fi">Sci-Fi</option>
-                    <option value="western">Western</option>
-                    <option value="documentary">Documentary</option>
-                    <option value="animation">Animation</option>
-                </select>
-            </div>
-
             <MovieFetcher 
                 ageRating={ageRating} 
                 genre={genre} 
