@@ -14,7 +14,7 @@ export default function Page() {
 
     return (
         <main className="flex-container mx-auto p-4">
-            <h1 classname="flex justify-center absolute top-0 font-bold gap-5 mb-4">Movie Suggestions 4 U</h1>
+            <h1 className="flex justify-center absolute top-0 font-bold gap-5 mb-4">Movie Suggestions 4 U</h1>
 
             <div>
                 <select
