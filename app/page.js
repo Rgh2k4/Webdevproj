@@ -6,6 +6,7 @@ import MovieList from "./movie-list";
 export default function Page() {
     const [movies, setMovies] = useState([]);
     const [ageRating, setAgeRating] = useState("");
+    const [genre, setGenre] = useState(""); 
 
     const handleFetchedMovies = (fetchedMovies) => {
         setMovies(fetchedMovies);
