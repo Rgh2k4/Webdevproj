@@ -48,7 +48,6 @@ export default function Page() {
                     <option value="western">Western</option>
                     <option value="documentary">Documentary</option>
                     <option value="animation">Animation</option>
-                    <option value="sports">Sports</option>
                 </select>
             </div>
 

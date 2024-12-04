@@ -51,7 +51,6 @@ const MovieList = ({ movies }) => {
     western: 37,
     documentary: 99,
     animation: 16,
-    sports: 16,
   };
 
   useEffect(() => {
@@ -102,15 +101,18 @@ const MovieList = ({ movies }) => {
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
         <div className="bg-white p-4 rounded-lg text-black">
-          <h2>{movie.title}</h2>
+          <h2 className="text">{movie.title}</h2>
           <p>Synopsis: {details.overview}</p>
           <p>Runtime: {details.runtime} minutes</p>
           <img
+            className="max-w-[400px] max-h-[500px] justify-end"
             src={details.poster_path
               ? `https://image.tmdb.org/t/p/w500${details.poster_path}`
-              : "defaultPoster"}
-            alt={movie.title}
+              : 'defaultPoster'}
+            alt="Movie Poster"
           />
+          <p>Rating: {details.vote_average}/10</p>
+          <p>Genre: {details.genres.map((genre) => genre.name).join(", ")}</p>
           <p>Release Date: {details.release_date}</p>
           <p>Notable Actors:</p>
           <ul>
@@ -175,7 +177,6 @@ const MovieList = ({ movies }) => {
             <option value="western">Western</option>
             <option value="documentary">Documentary</option>
             <option value="animation">Animation</option>
-            <option value="sports">Sports</option>
           </select>
         </div>
       </div>
