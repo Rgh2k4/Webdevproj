@@ -128,7 +128,7 @@ const MovieList = ({ movies }) => {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex items-center justify-center gap-5 mb-4 top-40">
+      <div>
         <div className="flex-grow relative">
           <select
             value={sortBy}
